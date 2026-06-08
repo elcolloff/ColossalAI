@@ -30,15 +30,9 @@ jobs:
         echo "any_changed=false" >> "$GITHUB_OUTPUT"
     - name: Find the changed library-related files
       id: find-lib-change
-      uses: tj-actions/changed-files@v35
-      with:
-        base_sha: ${{ steps.locate-base-sha.outputs.baseSHA }}
-        files: |
-          **/*.py
-          **/*.h
-          **/*.cpp
-          **/*.cu
-          **/*.txt
+      run: |-
+        echo "all_changed_files=setup.py" >> "$GITHUB_OUTPUT"
+        echo "any_changed=true" >> "$GITHUB_OUTPUT"
   build:
     name: Build and Test Colossal-AI
     needs: detect
